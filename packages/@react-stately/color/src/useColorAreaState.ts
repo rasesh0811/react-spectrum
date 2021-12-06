@@ -253,11 +253,13 @@ export function useColorAreaState(props: ColorAreaProps): ColorAreaState {
     },
     incrementX(stepSize) {
       let range = color.getChannelRange(channels.xChannel);
-      setXValue(snapValueToStep(xValue + stepSize, range.minValue, range.maxValue, stepSize));
+      let newValue = xValue + stepSize;
+      setXValue(newValue > range.maxValue ? range.maxValue : snapValueToStep(newValue, range.minValue, range.maxValue, stepSize));
     },
     incrementY(stepSize) {
       let range = color.getChannelRange(channels.yChannel);
-      setYValue(snapValueToStep(yValue + stepSize, range.minValue, range.maxValue, stepSize));
+      let newValue = yValue + stepSize;
+      setYValue(newValue > range.maxValue ? range.maxValue : snapValueToStep(newValue, range.minValue, range.maxValue, stepSize));
     },
     decrementX(stepSize) {
       let range = color.getChannelRange(channels.xChannel);
